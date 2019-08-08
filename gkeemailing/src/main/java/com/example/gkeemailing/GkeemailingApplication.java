@@ -72,8 +72,8 @@ import java.util.List;
 @Configuration
 public class GkeemailingApplication {
 
-	@Value( "${sg.api.key}" )
-	private  static String SG_API_SEC;
+	@Value("${sg.api.key}")
+	public  String SG_API_SEC;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GkeemailingApplication.class, args);
@@ -117,11 +117,11 @@ public class GkeemailingApplication {
 
 		Email from = new Email(fromEmail);
 
-		String subject = "[SendGrid] Testing !";
+		String subject = "[SendGrid] TVC team Testing !";
 		if(emailReq.getSubject() != null)
 			subject = emailReq.getSubject();
 
-		Content content = new Content("text/plain", "This is to inform you i am experimenting SendGrid, Please put a filter if it bothers you.");
+		Content content = new Content("text/plain", "This is to inform you we are  experimenting SendGrid, Please apply a filter on subject if this really bothers you.");
 		Mail mail = new Mail(from, subject, to, content);
 		Personalization personalization= new Personalization();
 
@@ -163,7 +163,7 @@ public class GkeemailingApplication {
 			String str = response.getBody();
 
 
-			if (response.getStatusCode() != 200) {
+			if (response.getStatusCode() != 202) {
 				System.out.println(String.format("An error occurred: %s", response.getStatusCode()));
 				return new ResponseEntity(response.getBody(), HttpStatus.INTERNAL_SERVER_ERROR);
 			}

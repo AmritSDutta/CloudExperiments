@@ -1,8 +1,10 @@
 package com.example.gkeemailing;
 
 import com.sendgrid.*;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -67,7 +69,11 @@ import java.util.List;
 
 @SpringBootApplication
 @RestController
+@Configuration
 public class GkeemailingApplication {
+
+	@Value( "${sg.api.key}" )
+	private  static String SG_API_SEC;
 
 	public static void main(String[] args) {
 		SpringApplication.run(GkeemailingApplication.class, args);
@@ -139,7 +145,8 @@ public class GkeemailingApplication {
 		mail.addPersonalization(personalization);
 
 		// Instantiates SendGrid client.
-		SendGrid sendgrid = new SendGrid("XXXXX");
+		System.out.println("Api Key " + SG_API_SEC);
+		SendGrid sendgrid = new SendGrid(SG_API_SEC);
 
 		// Instantiate SendGrid request.
 		Request request = new Request();

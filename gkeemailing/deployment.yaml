@@ -14,12 +14,19 @@ spec:
         app: mailing
     spec:
       containers:
-      - name: mailing
-        # Replace $GCLOUD_PROJECT with your project ID
-        image: gcr.io/myexperiment-248810/gkeemailing:latest
-        # This app listens on port 8080 for web traffic by default.
-        ports:
-        - containerPort: 8080
-        env:
-          - name: PORT
-            value: "8080"
+        -
+          name: mailing
+          image: 'gcr.io/XXXXX/gkeemailing:latest'
+          ports:
+            -
+              containerPort: 8080
+          env:
+            -
+              name: PORT
+              value: '8080'
+            -
+              name: SG_API_KEY
+              valueFrom: 
+                secretKeyRef: 
+                    name: mail-secret
+                    key: apikey

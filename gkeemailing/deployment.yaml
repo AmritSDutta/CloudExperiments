@@ -16,7 +16,7 @@ spec:
       containers:
         -
           name: mailing
-          image: 'gcr.io/XXXXXXXX/gkeemailing:latest'
+          image: 'gcr.io/myexperiment-248810/gkeemailing:latest'
           ports:
             -
               containerPort: 8080

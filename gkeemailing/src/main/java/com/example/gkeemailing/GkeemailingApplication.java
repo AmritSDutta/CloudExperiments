@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * ##Example:1
@@ -72,6 +73,7 @@ import java.util.List;
 @Configuration
 public class GkeemailingApplication {
 
+	AtomicInteger mailId = new AtomicInteger();
 	@Value("${sg.api.key}")
 	public  String SG_API_SEC;
 
@@ -142,7 +144,12 @@ public class GkeemailingApplication {
 			for(String bccEmails : emailReq.getEmailBccReceiver())
 				personalization.addBcc(new Email(bccEmails));
 		}
+		String mailIDString = String.valueOf(mailId.getAndIncrement());
+		personalization.addCustomArg("MailId",mailIDString);
 		mail.addPersonalization(personalization);
+
+
+
 
 		// Instantiates SendGrid client.
 		System.out.println("Api Key " + SG_API_SEC);
@@ -169,7 +176,7 @@ public class GkeemailingApplication {
 			}
 
 			// Print response.
-			System.out.println("Email sent. " + str);
+			System.out.println("Email sent, MailId = " + mailIDString+ str);
 		} catch (IOException e) {
 			System.out.println("SendGrid I/O error " + e.getStackTrace().toString());
 		}
@@ -179,6 +186,13 @@ public class GkeemailingApplication {
 
 
 		return new ResponseEntity("Email sent.",HttpStatus.OK);
+	}
+
+
+	@PostMapping("/sgevents")
+	public ResponseEntity<String> consumeEvents(@RequestBody String sgEvents) {
+		System.out.println("SG Events  : "+ sgEvents);
+		return new ResponseEntity("Received.",HttpStatus.OK);
 	}
 
 }

@@ -5,6 +5,8 @@ import org.springframework.lang.NonNull;
 import java.util.List;
 
 public class EmailReq {
+    String subject;
+    String senderEmail;
     @NonNull
     List<String> emailReceiver;
 
@@ -33,6 +35,22 @@ public class EmailReq {
 
     public void setEmailBccReceiver(List<String> emailBccReceiver) {
         this.emailBccReceiver = emailBccReceiver;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public String getSenderEmail() {
+        return senderEmail;
+    }
+
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
     }
 
     @Override

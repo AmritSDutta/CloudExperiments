@@ -1,26 +1,21 @@
-# CloudExperiments
+check-out WIKI for details : 
+https://github.com/AmritSDutta/CloudExperiments/wiki 
+
+
+
+CloudExperiments
+
 Project : gkeemailing
+description : Spring boot project for deployibg in GKE.
 
-Create blank Spring boot project , with web as dependency.
+Project : emailing
+description : Spring boot project for deployibg in GCP AppEngine.
 
-Modify the blank project as required. 3.Expose at least one endpoint for testing (REST service.)
+Both project objective is to send mail using SendGrid.
 
-create docker file as in the repo.
 
-Build your container image using Cloud Build to build and docker push, but it happens on GCP. Replace PROJECT_ID
-gcloud builds submit --tag gcr.io/[ProjectID]/gkeemailing
-
-Create the cluster. Replace YOUR_GCP_ZONE sudo gcloud container clusters create gkeemailing 
---num-nodes 1 
---enable-basic-auth 
---issue-client-certificate 
---zone asia-south1 
---no-enable-autoupgrade
-
-verify kubectl get nodes
-
-Create the deployment.yaml (as in the proj), deploy and verify. sudo kubectl apply -f deployment.yaml sudo kubectl get deployments sudo kubectl get pods
-
-9.Create the file service.yaml, apply and verify. sudo kubectl apply -f service.yaml sudo kubectl get services
-
-10. findout the External IP , and access it. for test- curl [EXTERNAL_IP]
+REST endpoints : 
+/getEmailReq  - responds with dummy JSON data with the format to be used for sending mail (GET)
+/domail - method to be used for sending mail , format from earlier endpoint. (POST)
+/sgevents - implementation of webhook, which can be used to consume notification from SendGrid. (POST)
+    

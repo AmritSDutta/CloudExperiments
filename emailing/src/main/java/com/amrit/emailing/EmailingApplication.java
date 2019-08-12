@@ -88,10 +88,18 @@ public class EmailingApplication {
     }
 
     @PostMapping("/domail")
-    public void sendMyMail(@RequestBody EmailReq receiverEmail) {
+    public ResponseEntity<String> sendMyMail(@RequestBody EmailReq receiverEmail) {
         System.out.println("hi : "+ receiverEmail);
-        send(receiverEmail);
+        return send(receiverEmail);
     }
+
+    @PostMapping("/domailtemplate")
+    public ResponseEntity<String> sendMyMailTemplate(@RequestBody EmailReq receiverEmail) {
+        System.out.println("hi : "+ receiverEmail);
+       return  sendMyMailTempl(receiverEmail);
+    }
+
+
 
     @PostMapping("/sgevents")
     public ResponseEntity<String> consumeEvents(@RequestBody SgEventNotification[] sgEvents) {
@@ -139,14 +147,96 @@ public class EmailingApplication {
         }
         String mailIDString = String.valueOf(mailId.getAndIncrement());
         personalization.addCustomArg("MailId",mailIDString);
-        mail.addPersonalization(personalization);
-
+       mail.addPersonalization(personalization);
 
 
 
         // Instantiates SendGrid client.
-        System.out.println("Api Key " + SG_API_SEC);
-        SendGrid sendgrid = new SendGrid(Base64.getDecoder().decode(SG_API_SEC).toString());
+        System.out.println("Api Key : " + new String(Base64.getDecoder().decode(SG_API_SEC)));
+        SendGrid sendgrid = new SendGrid(new String(Base64.getDecoder().decode(SG_API_SEC)));
+
+        // Instantiate SendGrid request.
+        Request request = new Request();
+        Response response;
+        try {
+            // Set request configuration.
+            request.setMethod(Method.POST);
+            request.setEndpoint("mail/send");
+            request.setBody(mail.build());
+
+            // Use the client to send the API request.
+            response= sendgrid.api(request);
+
+            String str = response.getBody();
+
+
+            if (response.getStatusCode() != 202) {
+                System.out.println(String.format("An error occurred: %s", response.getStatusCode()));
+                return new ResponseEntity(response.getBody(), HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+
+            // Print response.
+            System.out.println("Email sent, MailId = " + mailIDString+ str);
+        } catch (IOException e) {
+            System.out.println("SendGrid I/O error " + e.getStackTrace().toString());
+        }
+        catch (Exception e) {
+            System.out.println("SendGrid error " + e.getStackTrace().toString());
+        }
+
+
+        return new ResponseEntity("Email sent.",HttpStatus.OK);
+    }
+
+
+    private ResponseEntity<String> sendMyMailTempl(EmailReq emailReq) {
+        // Set content for request.
+        Email to = new Email(emailReq.getEmailReceiver().get(0));
+        String fromEmail = "jshanka@jci.com";
+        if(emailReq.getSenderEmail() != null)
+            fromEmail = emailReq.getSenderEmail();
+
+        Email from = new Email(fromEmail);
+
+        String subject = "[SendGrid] TVC team Testing !";
+        if(emailReq.getSubject() != null)
+            subject = emailReq.getSubject();
+
+        Content content = new Content("text/plain", "This is to inform you we are  experimenting SendGrid, Please apply a filter on subject if this really bothers you.");
+        Mail mail = new Mail(from, subject, to, content);
+        mail.setTemplateId("d-c712f68100cf40f2afe2a2ca24bd4e4f");
+        Personalization personalization= new Personalization();
+
+        System.out.println("TO : "+ emailReq.getEmailReceiver().get(0));
+        for(String toEmail : emailReq.getEmailReceiver())
+            personalization.addTo(new Email(toEmail));
+
+        if(emailReq.getEmailCcReceiver() != null && emailReq.getEmailCcReceiver().size() > 0)
+        {
+            System.out.println("CC : "+ emailReq.getEmailCcReceiver().get(0));
+            for(String ccEmail : emailReq.getEmailCcReceiver())
+                personalization.addCc(new Email(ccEmail));
+        }
+
+        if(emailReq.getEmailBccReceiver() != null && !emailReq.getEmailBccReceiver().isEmpty())
+        {
+            System.out.println("BCC : "+ emailReq.getEmailBccReceiver().get(0));
+            for(String bccEmails : emailReq.getEmailBccReceiver())
+                personalization.addBcc(new Email(bccEmails));
+        }
+        String mailIDString = String.valueOf(mailId.getAndIncrement());
+        personalization.addCustomArg("MailId",mailIDString);
+        personalization.addDynamicTemplateData("username","Amrit");
+        personalization.addDynamicTemplateData("password","abcd");
+        personalization.addDynamicTemplateData("senderemail","jshanka@jci.com");
+        personalization.addDynamicTemplateData("senderph","1234567");
+        mail.addPersonalization(personalization);
+
+
+
+        // Instantiates SendGrid client.
+        System.out.println("Api Key : " + new String(Base64.getDecoder().decode(SG_API_SEC)));
+        SendGrid sendgrid = new SendGrid( new String(Base64.getDecoder().decode(SG_API_SEC)));
 
         // Instantiate SendGrid request.
         Request request = new Request();

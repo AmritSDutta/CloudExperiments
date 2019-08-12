@@ -21,7 +21,9 @@ REST endpoints :
 /getEmailReq  - responds with dummy JSON data with the format to be used for sending mail (GET)
 
 /domail - method to be used for sending mail , format from earlier endpoint. (POST)
+
          Example body payload in JSON-
+         
          {
            "emailReceiver": [
                 "amrit90ambul@gmail.com"

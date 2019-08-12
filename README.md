@@ -21,6 +21,18 @@ REST endpoints :
 /getEmailReq  - responds with dummy JSON data with the format to be used for sending mail (GET)
 
 /domail - method to be used for sending mail , format from earlier endpoint. (POST)
+         Example body payload in JSON-
+         {
+           "emailReceiver": [
+                "amrit90ambul@gmail.com"
+          ],
+          "emailCcReceiver": [
+              "BTS-BLR976bghSDev@jci.com"
+         ],
+         "emailBccReceiver": [
+             "amrit.shankar.dutta@abc.com"
+         ]
+        }
 
 /sgevents - implementation of webhook, which can be used to consume notification from SendGrid. (POST)
     

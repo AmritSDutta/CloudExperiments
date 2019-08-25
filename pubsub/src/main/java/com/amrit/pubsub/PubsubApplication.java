@@ -22,6 +22,7 @@ import java.util.Map;
 @RestController
 public class PubsubApplication {
     private static final Logger LOG = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
+
     @Autowired
     BuCreationEmailMessagingHandler buCreationEmailMessagingHandler;
 

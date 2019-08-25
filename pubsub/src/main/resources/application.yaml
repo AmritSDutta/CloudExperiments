@@ -30,19 +30,3 @@ spring:
 
 
 
-    stream:
-      gcp:
-        pubsub:
-          bindings:
-            buCreationEmailInput:
-              destination: ${tvc_env}_buCreationEmail
-              group: ${tvc_env}_buCreationEmail_consumerGroup
-              content-type: application/json
-              binder: pubsub
-              consumer:
-                concurrency: 10
-
-            buCreationEmailOutput:
-              destination: ${tvc_env}_buCreationEmail
-              content-type: application/json
-              binder: pubsub

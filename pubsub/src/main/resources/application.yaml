@@ -1,0 +1,48 @@
+server.port: 8081
+
+
+security:
+  ignored: /**
+
+
+logging:
+  level:
+    root: INFO
+    com.amrit.pubsub: DEBUG
+
+spring:
+  cloud:
+    stream:
+      bindings:
+        buCreationEmailInput:
+          destination: buCreationEmail
+          group: consumer_group
+          content-type: application/json
+          binder: pubsub
+          consumer:
+            concurrency: 50
+
+        buCreationEmailOutput:
+          destination: buCreationEmail
+          content-type: application/json
+          binder: pubsub
+
+
+
+
+    stream:
+      gcp:
+        pubsub:
+          bindings:
+            buCreationEmailInput:
+              destination: ${tvc_env}_buCreationEmail
+              group: ${tvc_env}_buCreationEmail_consumerGroup
+              content-type: application/json
+              binder: pubsub
+              consumer:
+                concurrency: 10
+
+            buCreationEmailOutput:
+              destination: ${tvc_env}_buCreationEmail
+              content-type: application/json
+              binder: pubsub

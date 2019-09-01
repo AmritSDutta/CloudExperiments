@@ -1,0 +1,35 @@
+# This file configures the hello-world app which serves public web traffic.
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: order
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: order
+  template:
+    metadata:
+      labels:
+        app: order
+    spec:
+      containers:
+        -
+          name: order
+          image: 'gcr.io/myexperiment-248810/order:latest'
+		  
+		  volumeMounts:
+        	- 
+			  name: google-cloud-key
+          	  mountPath: /var/secrets/google
+          ports:
+            -
+              containerPort: 8080
+          env:
+            -
+              name: PORT
+              value: '8080'
+            - 
+			  name: GOOGLE_APPLICATION_CREDENTIALS
+              value: /var/secrets/google/key.json
+

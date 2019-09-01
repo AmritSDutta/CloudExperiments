@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "myexperiment-248810",
+  "private_key_id": "7bc12cb746867102c69325323c9a7a47bdaa7825",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQCeE54kfQjhmzjw\noDHXLojwjihosoMDiRTmta89ew1iZw1SHnxHY1G6XeTozS6uYicp5dcHVXajuabO\nIIf1ehTzy09p4jOvDGg+EVqdM26FD+5xUwy56SONYPU8XSMxcB0BVQay97+cTuuj\nM6gw9sZxysSX7UbUELMxtG9pTSt/rWqCHRdQlE1P7ucXvrtGbHgNUlLJEbI44FXS\nbU7v+nBg4oXkoJPVnQzKHn351zsS8d8qpWcda3FrdZz85mcV5ktJhbCLX3Gl6Tfm\nsUl21+NKmqSIvm+X2Smbp5hd/q9qaMF7jwRRmNyOTyPE6lltCmQW99HOvNYDaGNH\nfo5W57ilAgMBAAECggEAI7Ze5fNxjDabOJGYcPrMaTxUmMKroqLXm/+z5XnlXjPV\n6JWGkkI39pi73HRudWsrWeXZHIkMUpTgwHTNAoJgNWvbNxqpfoSZEFyvUhCKiXk9\n71BJ8b5gD9K11Ltd9g9UHjbtWoVqPo/94FMNTnKSBqc+nuw2MjbLpREUkn+isidK\nmmmtur9y/gohvKRh0C8Eh+odEeBgkqkZ34qbuSsP3HBnGKZaSPb8GDcSHADK0yrp\nXz9jY6h5hbD0VdPk/3IZ6cIbVPSIUkWoV+txywgKF9X1NZqdQVN1UzklTXDWHMUm\nMM2R+Qu3x/Fg4rVMoWHV4ztCM0YnmdTmbhmSjaoTiQKBgQDOMb/HP1lPK1BhYLWd\neCeJmIcevWpNPJ6cRVhEoEfgCnbb4fa5rvcUSJWWNc2yUoU2Eo2s/pyURxBnMvvU\nlXvL9HoxE2e0/9Ln/3c51CEFwvk+3QhpbxUIfrMzOTj7sUlIn5z+r9gQqa6Y+ytu\nrAq+gC8RcycS7x/q2MMoi0CIvwKBgQDEQnVPKSylc+Se+uFx06ZDcGzrbS5APixG\nj0Cf4EzGf9fxpKX/Xxiw1ZR79aUQNFfVbHTFuKjOBxASgMY/lrxuC1p2C1o8Iimh\nzB6KNyvvjGbVi+ZjLpkQtcrshDZWtUwZWTNL9UVCpg0B0Br7YBiF3DPA5t6S1u2x\nIJ1NHkFTmwKBgFVhEjktyQxYMhtwUSOYOj7mcqTO5/J9dGve5vLbr4dcreTUhzZR\n9atndtFRDBCXzOMcAaAteaaIWolw+ggHsdA9Nk+V6m5vM+Suyq6eYOIi3tQh8DbA\nMWRoGknOmwLVYTP6K6bmJ0CXEl30OwLDqFtDdrnyBa74Zy32fbEPIDS/AoGAW826\nkgzwlXRgvP0d9+DJJUKxsG6h8+shSuA3mpGRWEj0+lPKUmppYk6F5nZBgBL8Axl4\nhgSa8cTb/8u88IHSIqes6QrmarqQPt78airkomlKsRl/62UgtHBVO82cnXKw5iqT\nlDRm8YY7D14JQQzya6tViiZ0druS9AgNjMVaSYECgYBFvqh87xsDGgCmOcRQIfnl\nYxaSvahvRnSt3SLYMeTt+/I7wcMKUuAijptYzZxVa3CjEMkwNspWqZ1e/DdeNzyM\nqH9Adt49qPgGvss9VvSOqeGWTf1JgIKwC20CUvnZC9eVW9m1zdan4LJy23oCP7xX\n+KnfufKQpQrBYDu/ZM6Z2w==\n-----END PRIVATE KEY-----\n",
+  "client_email": "gke-spanner@myexperiment-248810.iam.gserviceaccount.com",
+  "client_id": "108866369779618243069",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/gke-spanner%40myexperiment-248810.iam.gserviceaccount.com"
+}
